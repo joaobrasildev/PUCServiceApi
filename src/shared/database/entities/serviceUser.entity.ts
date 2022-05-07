@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, CreateDateColumn, DeleteDateColumn, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Service } from "./service.entity";
 import { ServiceUserItem } from "./serviceUserItem.entity";
 
+@Entity()
 export class ServiceUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;

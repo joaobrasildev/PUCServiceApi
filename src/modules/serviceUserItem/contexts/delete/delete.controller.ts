@@ -9,12 +9,12 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { apiTags } from '@shared/constants/apiTags';
-import { DeleteServiceUserService, } from './delete.service';
+import { DeleteServiceUserItemService, } from './delete.service';
 
-@ApiTags(apiTags.SERVICE_USERS)
-@Controller('service-users')
-export class DeleteServiceUserController {
-  constructor(private service: DeleteServiceUserService) {}
+@ApiTags(apiTags.SERVICE_USER_ITEMS)
+@Controller('service-user-items')
+export class DeleteServiceUserItemController {
+  constructor(private service: DeleteServiceUserItemService) {}
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @UsePipes(

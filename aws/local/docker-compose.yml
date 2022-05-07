@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - AWS_DEFAULT_REGION=${AWS_REGION}
+      - EDGE_PORT=${AWS_EDGE_PORT}
+      - SERVICES=s3
+    ports:
+      - '4566-4597:4566-4597'
+    volumes:
+      - '${TMPDIR:-/tmp/localstack}:/tmp/localstack'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    networks:
+      - localstack-aws-network
+networks:
+  localstack-aws-network:
+    external: true
+    driver: bridge

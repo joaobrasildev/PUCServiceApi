@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryRepository } from '@shared/repositories/category.repository';
 import { ServiceRepository } from '@shared/repositories/service.repository';
+import { ServiceUserRepository } from '@shared/repositories/serviceUser.repository';
+import { ServiceUserItemRepository } from '@shared/repositories/serviceuserItem.repository';
 import {  CreateServiceUserItemController } from './contexts/create/create.controller';
 import { CreateServiceUserItemService } from './contexts/create/create.service';
-import { DeleteServiceUserController } from './contexts/delete/delete.controller';
+import { DeleteServiceUserItemController } from './contexts/delete/delete.controller';
 import { DeleteServiceUserItemService } from './contexts/delete/delete.service';
 import {  GetAllServiceUserItemController } from './contexts/getAll/getAll.controller';
 import { GetAllServiceUserItemService } from './contexts/getAll/getAll.service';
@@ -15,7 +17,16 @@ import { UpdateServiceUserItemService } from './contexts/update/update.service';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ServiceRepository, CategoryRepository])],
+  imports: [
+    TypeOrmModule.forFeature(
+      [
+        ServiceRepository, 
+        CategoryRepository, 
+        ServiceUserItemRepository,
+        ServiceUserRepository
+      ]
+    )
+  ],
   providers: [
     CreateServiceUserItemService,
     GetOneServiceUserItemService,
@@ -27,7 +38,7 @@ import { UpdateServiceUserItemService } from './contexts/update/update.service';
     CreateServiceUserItemController,
     GetOneServiceUserItemController,
     GetAllServiceUserItemController,
-    DeleteServiceUserController,
+    DeleteServiceUserItemController,
     UpdateServiceUserItemController
   ],
 })
