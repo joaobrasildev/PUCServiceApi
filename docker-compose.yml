@@ -11,6 +11,12 @@ services:
             - pgdata:/var/lib/postgresql/data
         ports:
             - '5438:5432'
+    api:
+        container_name: puc-service-api
+        build:
+            context: .
+        ports:
+            - 3000:3000
 
 volumes:
     pgdata:

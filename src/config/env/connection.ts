@@ -14,6 +14,17 @@ export const config: TypeOrmModuleOptions = {
   synchronize: false,
 };
 
+export const configString: TypeOrmModuleOptions = {
+  url: process.env.DATABASE_URL,
+  type: 'postgres',
+  ssl: {
+    rejectUnauthorized: false,
+  },
+  entities: ['dist/**/*.entity{.ts,.js}'],
+  synchronize: true, // This for development
+  autoLoadEntities: true,
+}
+
 export function getDatabaseConfigConnection(): TypeOrmModuleOptions {
   return {
     ...config,
